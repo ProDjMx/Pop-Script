@@ -1,7 +1,6 @@
 // plugSpam by ProDjMx
 var plugSpam, nbSpam, msgSpam, i = 0;
 
-
 API.chatLog("plugSpam Loaded");
 console.log("Type /spam to get started or /stopspam to stop the spam")
 
