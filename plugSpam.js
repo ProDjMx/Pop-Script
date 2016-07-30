@@ -1,5 +1,6 @@
 // plugSpam by ProDjMx
 var plugSpam, nbSpam, msgSpam;
+var usrId = API.getUser().id;
 
 API.chatLog("plugSpam Loaded");
 console.log("Type /spam to get started or /stopspam to stop the spam")
@@ -18,7 +19,7 @@ API.on(API.CHAT_COMMAND, function(trigger) {
                 console.log("Spam cancelled");
                 API.chatLog("Spam cancelled");
             } else if (nbSpam > 10) {
-                if (API.hasPermission(user.id, API.ROLE.BOUNCER)) {
+                if (API.hasPermission(usrId, API.ROLE.BOUNCER)) {
                     nbSpam = nbSpam + 1;
                     console.log("Spam started");
                     API.chatLog("Spam started");
