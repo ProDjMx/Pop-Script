@@ -1,5 +1,5 @@
 // plugSpam by ProDjMx
-var plugSpam, nbSpam, msgSpam, i = 0;
+var plugSpam, nbSpam, msgSpam;
 
 API.chatLog("plugSpam Loaded");
 console.log("Type /spam to get started or /stopspam to stop the spam")
@@ -43,8 +43,8 @@ API.on(API.CHAT_COMMAND, function(trigger) {
 
 function startSpam(message, number){ 
     plugSpam = setInterval(function(){
-        number = number - 1;
-        if (i < number) {
+        number--;
+        if (0 < number) {
             API.sendChat(message);
         } else {
             stopSpam();
