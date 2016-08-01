@@ -2,12 +2,12 @@
 
 // TODO: Improve /id and improve the way to load scripts
 
-// - No Error Confirmation
+// - No Error Confirmation -
 setTimeout(function(){
     API.chatLog(" Pop Script Loaded ")
 }, 2000); //For personal purposes
 
-// - Var
+// - Var -
 // Found on internet
 var fullUrl = document.location.href;
 var emplacement = document.location.href.substring(fullUrl.lastIndexOf( "/" )+1 );
@@ -18,7 +18,7 @@ var glCheck = 0;
 var usrLvl = API.getUser().level;
 var usrId = API.getUser().id;
 
-// - Script
+// - Script -
 API.on(API.CHAT_COMMAND, function(cmd){
 	switch(cmd) {
 		case "/pscommands" :
