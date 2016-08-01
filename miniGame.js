@@ -55,7 +55,7 @@ function easy(){
 			}
 		}
 		if (solution === submitted) {
-			alert("Congrats! The answer was " + solution + ", it took you " + turnsDone + " turn(s))");
+			alert("Congrats! The answer was " + solution + ", it took you " + turnsDone + " turn(s)");
 			API.chatLog("Game finished");
 		} else if (turnsDone === nbTurns) {
 			alert("Too late! You reached the " + turnsDone + " turn, the answer was " + solution)
