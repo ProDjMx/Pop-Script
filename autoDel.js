@@ -1,4 +1,6 @@
-//AutoDel created by ProDjMx | Highly helped by Wibla to get it working
+// AutoDel created by ProDjMx | Highly helped by Wibla to get it working
+// TODO: Optimize
+
 var nickToDel;
 var idToDel;
 var users;
@@ -22,12 +24,15 @@ function getUserId(nick){
 API.on(API.CHAT_COMMAND, function(cmd){
 	vlrs = cmd.split(" ");
 	if (vlrs[0] === "/del") {
-		if (vlrs[1] === undefined && delCheck === 1) {
-			delCheck = 0;
-			idToDel = null;
-			API.chatLog("AutoDel stopped");
-		} else if (vlrs[1] === undefined && delCheck === 0) {
-			console.error("AutoDel isn't running");
+        if (vlrs[1] === undefined || vlrs[1] === null) {
+            if (delCheck === 1) {
+                delCheck = 0;
+                idToDel = null;
+                nickToDel = null;
+                API.chatLog("AutoDel stopped");
+            } else if (delCheck === 0) {
+                console.error("AutoDel isn't running");
+            }
 		} else {
 			nickToDel = vlrs[1].replace("@", "");
 			idToDel = getUserId(nickToDel).id;
