@@ -1,6 +1,6 @@
-//Basic miniGame by ProDjMx
+// Basic miniGame by ProDjMx
+// TODO: Optimize | Finish the script / Decide what to do with the script
 
-// NEED TO BE FIXED
 var nbMax, solution, nbTurns, difficulty;
 var turnsDone = 0;
 var submitted = -1;
@@ -16,7 +16,7 @@ API.on(API.CHAT_COMMAND, function(trigger) {
 		difficulty = prompt("Choose the difficulty: Easy | Medium | Hard");
 		if (difficulty.toLowerCase() !== "easy" && difficulty.toLowerCase() !== "medium" && difficulty.toLowerCase() !== "hard") {
 			API.chatLog("Game interrupted");
-			alert("Please choose between Easy, Medium and Hard");
+			alert("Please choose between Easy, Medium or Hard");
 			API.sendChat("/startgame");
 		} else if (difficulty.toLowerCase() === "easy"){
 			easy();
