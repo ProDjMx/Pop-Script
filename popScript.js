@@ -1,69 +1,133 @@
 // Pop Script by ProDjMx | ONLY FOR PERSONAL USE
 
-// TODO: Improve /id and improve the way to load scripts
+// TODO: Check other TODO lists | Finish autoRespond script | Improve /playtowin command
 
-// - No Error Confirmation 
+// - No Error / Loading Confirmation
 setTimeout(function(){
     API.chatLog(" Pop Script Loaded ")
 }, 2000); //For personal purposes
 
-// - Var 
-// Found on internet
-var fullUrl = document.location.href;
-var emplacement = document.location.href.substring(fullUrl.lastIndexOf( "/" )+1 );
-// ---
+// - Var
 var adCheck = 0;
 var slCheck = 0;
 var glCheck = 0;
+var arCheck = 0;
+var ptwCheck = 0;
+var i = 0;
+var usrs = API.getUsers();
 var usrLvl = API.getUser().level;
 var usrId = API.getUser().id;
 
-// - Script 
+// - Script        
 API.on(API.CHAT_COMMAND, function(cmd){
-	switch(cmd) {
+    cmd = cmd.split(" ");
+	switch(cmd[0]) {
 		case "/pscommands" :
 			//Need to find a way to use properly \n
 			null;
 			break;
 		case "/test" :
-			API.chatLog("Pop script is loaded");
-			console.log("Test confirmed");
-			break;
-		case "/testscript" :
-			null;
-			break;
-		case "/loadplugspam" :
-			if (usrLvl < 4) {
-				API.chatLog("Sorry, it requires to be level 4 or above");
-				console.error("Not Authorised")
-			} else if (slCheck === 0) {
-				$.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/plugSpam.js');
-				slCheck = 1;
-			} else if (slCheck === 1) {
-				API.chatLog("plugSpam is already loaded");
-				console.error("plugSpam is already loaded");
-			}
-			break;
-		case "/loadgame":
-			if (glCheck === 0) {
-				$.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/miniGame.js');
-				glCheck = 1;
-			} else if (glCheck === 1) {
-				API.chatLog("miniGame is already loaded");
-				console.error("miniGame is already loaded");
-			}
-			break;
-		case "/autodel" :
-			if (adCheck === 0){
-				$.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/autoDel.js');
-				adCheck = 1;
-			} else if (adCheck === 1){
-				API.chatLog("AutoDel is already loaded");
-			}
-			break;
-		case "/id":
-			//Needs to be improved
-			API.chatLog("Your ID is " + usrId);
-			break;
+            if (cmd[1] === "script") {
+                null;
+                break;
+            } else {
+                API.chatLog("Pop Script is loaded");
+                console.log("Test confirmed");
+                break;
+            }
+        case "/load" :
+            if (cmd[1].toLowerCase() === "plugspam") {
+                if (usrLvl < 4) {
+                    API.chatLog("Sorry, it requires to be level 4 or above");
+                    console.error("Not Authorised");
+                    break;
+                } else if (slCheck === 0) {
+                    $.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/plugSpam.js');
+                    slCheck = 1;
+                    break;
+                } else if (slCheck === 1) {
+                    API.chatLog("plugSpam is already loaded");
+                    console.error("plugSpam already loaded");
+                    break;
+                }
+            } else if (cmd[1].toLowerCase() === "game") {
+                if (glCheck === 0) {
+                    $.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/miniGame.js');
+                    glCheck = 1;
+                    break;
+                } else if (glCheck === 1) {
+                    API.chatLog("miniGame is already loaded");
+                    console.error("miniGame already loaded");
+                    break;
+                }
+            } else if (cmd[1].toLowerCase() === "autodel") {
+                if (adCheck === 0) {
+                    $.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/autoDel.js');
+                    adCheck = 1;
+                    break;
+                } else if (adCheck === 1) {
+                    API.chatLog("autoDel is already loaded");
+                    console.error("autoDel already loaded");
+                    break;
+                }
+            } else if (cmd[1].toLowerCase() === "autorespond") {
+                if (arCheck === 0) {
+                    $.getScript('');
+                    arCheck = 1;
+                    break;
+                } else if (arCheck === 1) {
+                    API.chatLog("autoRespond is already loaded");
+                    console.error("autoRespond already loaded");
+                    break;
+                }
+            } else if (cmd[1].toLowerCase() === "all") {
+                if (slCheck === 1 || glCheck === 1 || adCheck === 1 || arCheck === 1) {
+                    API.chatLog("Can't be executed because a script already has been loaded");
+                    console.error("Can't be executed");
+                    break;
+                } else {
+                    $.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/plugSpam.js'); // plugSpam
+                    slCheck = 1;
+                    $.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/miniGame.js'); // miniGame
+                    glCheck = 1;
+                    $.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/autoDel.js'); // autoDel
+                    adCheck = 1;
+                    $.getScript(''); // autoRespond
+                    arCheck = 1;
+                    break;
+                }
+            }
+            break;
+        case "/id" :
+            if (cmd[1] === undefined || cmd[1] === null) {
+                API.chatLog("Your ID is " + usrId);
+                break;
+						} else if (usrIdByName(cmd[1]) === undefined) {
+							API.chatLog("User not found");
+							console.error("User not found");
+							break;
+						} else {
+							API.chatLog(cmd[1] + " ID  is: " +usrIdByName(cmd[1]));
+							break;
+						}
+        case "/playtowin" :
+            if (API.hasPermission(API.getUser().id, API.ROLE.MANAGER)) {
+               $.getScript('https://dl.dropboxusercontent.com/u/88492635/Pop%20Script/playtowin.js');
+               break;
+            } else {
+               API.chatLog("Sorry, you don't have enough permission in this room");
+               console.error("Not enough permission");
+               break;
+            }
 	}
 });
+
+// - Function
+function usrIdByName(name) {
+	name = name.replace("@", "").toLowerCase();
+	for (var i = 0; i < usrs.length; i++) {
+		if (name == usrs[i].username.toLowerCase()) {
+			return usrs[i].id;
+		}
+	}
+}
