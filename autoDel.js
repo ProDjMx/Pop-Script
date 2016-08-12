@@ -1,4 +1,4 @@
-// AutoDel created by ProDjMx | Highly helped by Wibla to get it working
+// AutoDel created by ProDjMx | Highly helped by Wibla to got it working
 // TODO: Optimize
 
 var nickToDel;
