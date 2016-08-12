@@ -1,6 +1,6 @@
 // Pop Script by ProDjMx | ONLY FOR PERSONAL USE
 
-// TODO: Check other TODO lists | Finish autoRespond script | Improve /playtowin command
+// TODO: Check other TODO lists | Improve /playtowin command | Update the links
 
 // - No Error / Loading Confirmation
 setTimeout(function() {
@@ -43,7 +43,7 @@ API.on(API.CHAT_COMMAND, function(cmd) {
 					console.error("Not Authorised");
 					break;
 				} else if (slCheck === 0) {
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/plugSpam.js');
+					$.getScript('');
 					slCheck = 1;
 					break;
 				} else if (slCheck === 1) {
@@ -53,7 +53,7 @@ API.on(API.CHAT_COMMAND, function(cmd) {
 				}
 			} else if (cmd[1].toLowerCase() === "game") {
 				if (glCheck === 0) {
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/miniGame.js');
+					$.getScript('');
 					glCheck = 1;
 					break;
 				} else if (glCheck === 1) {
@@ -63,7 +63,7 @@ API.on(API.CHAT_COMMAND, function(cmd) {
 				}
 			} else if (cmd[1].toLowerCase() === "autodel") {
 				if (adCheck === 0) {
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/autoDel.js');
+					$.getScript('');
 					adCheck = 1;
 					break;
 				} else if (adCheck === 1) {
@@ -71,9 +71,9 @@ API.on(API.CHAT_COMMAND, function(cmd) {
 					console.error("autoDel already loaded");
 					break;
 				}
-			} else if (cmd[1].toLowerCase() === "nodj") {
+			} else if (cmd[1].toLowerCase() === "mdj") {
 				if (mdjCheck === 0) {
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/mDJ.js');
+					$.getScript('');
 					mdjCheck = 1;
 					break;
 				} else if (mdjCheck === 1) {
@@ -83,7 +83,7 @@ API.on(API.CHAT_COMMAND, function(cmd) {
 				}
 			} else if (cmd[1].toLowerCase() === "autorespond") {
 				if (arCheck === 0) {
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/autoRespond.js');
+					$.getScript('');
 					arCheck = 1;
 					break;
 				} else if (arCheck === 1) {
@@ -97,15 +97,15 @@ API.on(API.CHAT_COMMAND, function(cmd) {
 					console.error("Can't be executed");
 					break;
 				} else {
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/plugSpam.js'); // plugSpam
+					$.getScript(''); // plugSpam
 					slCheck = 1;
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/miniGame.js'); // miniGame
+					$.getScript(''); // miniGame
 					glCheck = 1;
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/autoDel.js'); // autoDel
+					$.getScript(''); // autoDel
 					adCheck = 1;
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/autoRespond.js'); // autoRespond
+					$.getScript(''); // autoRespond
 					arCheck = 1;
-					$.getScript('https://dl.dropboxusercontent.com/u/88492635/JS/Pop%20Script/mDJ.js'); // mDJ
+					$.getScript(''); // mDJ
 					mdjCheck = 1;
 					break;
 				}
