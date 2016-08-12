@@ -1,6 +1,7 @@
 // PlayToWin by ProDjMx
 // NOTE: setTimeout function are here to prevent spaming plug servers
-// TODO: Find a way to reload the script once the game is done | Create a french version | Optimize the entire script
+// TODO: Find a way to reload the script once the game is done
+// TODO: Create a french version | Optimize the entire script 
 
 // - Var
 var gamemode;
@@ -15,11 +16,13 @@ var rnCheck = 0;
 if (rnCheck === 1 || rnCheck === 2 /* || rnCheck === 2 */) {
 	API.chatLog("Sorry, a game is already started");
 	console.error("A game is already started");
-} else {
+} else if (API.hasPermission(API.getUser().id, API.ROLE.MANAGER)) {
 	API.chatLog("Game Modes available:");
 	API.chatLog("- RN: Random Number");
 	API.chatLog("-! More should be coming soon !-");
-	gamemode = prompt("Choose the game mode (enter the first two letters given)");
+	settimeout(function(){
+		gamemode = prompt("Choose the game mode (enter the first two letters given)");
+	}, 1000);
 	if (gamemode === null || gamemode === undefined) {
 		API.chatLog("Game cancelled");
 	} else if (gamemode.toLowerCase() !== "rn" /* && gamemode.toLowerCase() !== */) {
@@ -42,6 +45,9 @@ if (rnCheck === 1 || rnCheck === 2 /* || rnCheck === 2 */) {
 			API.chatLog("Solution is " +nbSlt+ ". You can't participate!");
 		}
 	}
+} else {
+	API.chatLog("Sorry, you don't have enough permission in this room");
+	console.error("Not enough permission");
 }
 
 API.on(API.CHAT, function(msg){
@@ -66,7 +72,9 @@ API.on(API.CHAT, function(msg){
 						API.moderateMoveDJ(msg.uid, 1);
 					} else {
 						API.moderateAddDJ(msg.uid);
-						API.moderateMoveDJ(msg.uid, 1);
+						setTimeout(function(){
+							API.moderateMoveDJ(msg.uid, 1);
+						}, 500);
 					}
 					API.sendChat("[Game Over] All the messages related to the game are going to be deleted! :warning:");
 					setTimeout(function() {
@@ -75,7 +83,7 @@ API.on(API.CHAT, function(msg){
 							i++;
 						}
 						msgToDel = [];
-					}, 6000);
+					}, 10000);
 					rnCheck = 0;
 				}, 1000);
 			}
